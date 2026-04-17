@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🚀 Productivity</h2>
+        <a href="#">Dashboard</a>
+        <a href="#">Tasks</a>
+        <a href="#">Goals</a>
+        <a href="#">Habits</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="hero">
+            <h1>Manage Your Tasks & Goals</h1>
+            <p>Track productivity, manage tasks, and achieve your goals efficiently.</p>
+        </div>
+
+        <div class="task-box">
+            <h2>Your Tasks</h2>
+
+            <form action="/add_task" method="post">
+                <input type="text" name="task" placeholder="Enter task" required>
+                <button>Add</button>
+            </form>
+
+            {% for task in tasks %}
+            <div class="task">
+                <span>{{ task[2] }}</span>
+                <a class="delete-btn" href="/delete_task/{{ task[0] }}">Delete</a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
